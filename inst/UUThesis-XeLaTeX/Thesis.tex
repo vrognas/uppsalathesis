@@ -1,0 +1,122 @@
+%
+% Template for Doctoral Theses at Uppsala 
+% University. The template is based on    
+% the layout and typography used for      
+% dissertations in the Acta Universitatis 
+% Upsaliensis series                      
+% Ver 5.2 - 2012-08-08                  
+% Latest version available at:            
+%   http://ub.uu.se/thesistemplate            
+%                                         
+% Support: Wolmar Nyberg Akerstrom        
+% Thesis Production           
+% Uppsala University Library              
+% avhandling@ub.uu.se                          
+%                                         
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass{UUThesisTemplate}
+
+% Package to determine wether XeTeX is used
+\usepackage{ifxetex}
+
+\ifxetex
+	% XeTeX specific packages and settings
+	% Language, diacritics and hyphenation
+	\usepackage[babelshorthands]{polyglossia}
+	\setmainlanguage{english}
+	\setotherlanguages{swedish}
+
+	% Font settings
+	\setmainfont{Times New Roman}
+	\setromanfont{Times New Roman}
+	\setsansfont{Arial}
+	\setmonofont{Courier New}
+\else
+	% Plain LaTeX specific packages and settings
+	% Language, diacritics and hyphenation
+    % Use English and Swedish languages. 
+	\usepackage[swedish,english]{babel} 
+
+	% Font settings
+	\usepackage{type1cm}
+	\usepackage[latin1]{inputenc}
+	\usepackage[T1]{fontenc}
+	\usepackage{mathptmx}
+	
+	% Enable scaling of images on import
+	\usepackage{graphicx}
+\fi
+
+
+% Tables
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% Document links and bookmarks
+\usepackage{hyperref} 
+
+% Numbering of headings down to the subsection level
+\numberingdepth{subsection}
+
+% Including headings down to the subsection level in contents
+\contentsdepth{subsection}
+
+
+% Uncomment to use a custom abstract dummy text
+%\abstractdummy{
+%	\begin{abstract}
+%		Please use no more than 300 words and avoid mathematics or complex script.
+%	\end{abstract}
+%}
+
+
+\begin{document}
+\frontmatter
+    % Creates the front matter (title page(s), abstract, list of papers)
+    % for either a Comprehensive Summary or a Monograph.
+    % Authors of Comprehensive Summaries use this front matter 
+    \frontmatterCS 
+    % Monograph authors use this front matter 
+    %\frontmatterMonograph 
+ 
+   % Optional dedication
+   \dedication{Dedicated to all hard-working \\doctoral students at Uppsala University}
+ 
+    % Environment used to create a list of papers
+    \begin{listofpapers}
+    	\item A Paper Discussed in this Thesis \label{apaperlabel}
+    \end{listofpapers}
+    
+    
+    \begingroup
+        % To adjust the indentation in your table of contents, uncomment and enter the widest numbers for each level
+        %  E.g.  \settocnumwidth{widest chapter number}{widest section number}{widest subsection number}...{...}
+       %  \settocnumwidth{5}{4}{5}{3}{3}{3}
+        \tableofcontents
+    \endgroup
+    
+    % Optional tables
+    %\listoftables
+    %\listoffigures
+
+\mainmatter
+    % This includes the "Instruction", "Problem and Solutions" and "Example" files. After reading it, remove it from Thesis.tex. 
+    \input{Example/Instruction.tex}
+    \input{Example/ProblemsAndSolutions}
+    \input{Example/Example.tex}
+    
+    % Include your chapters here.
+    %\input{Introduction.tex}
+
+
+\backmatter
+    % References
+    % No restriction is set to the reference styles
+    % Save your references in References.bib
+    \nocite{*} % Remove this for your own citations
+    \bibliographystyle{plain}
+    \bibliography{References}
+
+\end{document}
