@@ -4,7 +4,7 @@ Title: Uppsala University Thesis Template
 Version: 0.1.0
 Author: Viktor Rognås
 Maintainer: Viktor Rognås <viktor.rognas@farmaci.uu.se>
-Description: Template for writing a thesis at Uppsala University
-License: What license is it under?
+Description: Template for writing a thesis at Uppsala University.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
