@@ -21,11 +21,11 @@
 
 % Paper resizing commands
 \providecommand{\UU@setsfivepaper}{
-	\setlength{\paperheight}{242mm} 
+	\setlength{\paperheight}{242mm}
 	\setlength{\paperwidth}{165mm}
 	\setlength{\hoffset}{-1in}
 	\setlength{\voffset}{-1in}
-	\setlength{\topmargin}{8,8mm} 
+	\setlength{\topmargin}{8,8mm}
 	\setlength{\oddsidemargin}{22,5mm}
 	\setlength{\evensidemargin}{22,5mm}
 	\setlength{\headheight}{4,6mm}
@@ -41,11 +41,11 @@
 }
 
 \providecommand{\UU@setafourpaper}{
-	\setlength{\paperheight}{297mm} 
+	\setlength{\paperheight}{297mm}
 	\setlength{\paperwidth}{210mm}
 	\setlength{\hoffset}{-1in}
 	\setlength{\voffset}{-1in}
-	\setlength{\topmargin}{13,8mm} 
+	\setlength{\topmargin}{13,8mm}
 	\setlength{\oddsidemargin}{30mm}
 	\setlength{\evensidemargin}{30mm}
 	\setlength{\headheight}{4,6mm}
@@ -60,11 +60,11 @@
 	\special{papersize=297mm,210mm}
 }
 \providecommand{\UU@setafivepaper}{
-	\setlength{\paperheight}{210mm} 
+	\setlength{\paperheight}{210mm}
 	\setlength{\paperwidth}{148mm}
 	\setlength{\hoffset}{-1in}
 	\setlength{\voffset}{-1in}
-	\setlength{\topmargin}{8,8mm} 
+	\setlength{\topmargin}{8,8mm}
 	\setlength{\oddsidemargin}{20mm}
 	\setlength{\evensidemargin}{20mm}
 	\setlength{\headheight}{4,6mm}
@@ -78,11 +78,11 @@
 	\setlength{\pdfpageheight}{\paperheight}
 }
 \providecommand{\UU@setbfivepaper}{
-	\setlength{\paperheight}{250mm} 
+	\setlength{\paperheight}{250mm}
 	\setlength{\paperwidth}{176mm}
 	\setlength{\hoffset}{-1in}
 	\setlength{\voffset}{-1in}
-	\setlength{\topmargin}{8,8mm} 
+	\setlength{\topmargin}{8,8mm}
 	\setlength{\oddsidemargin}{22,5mm}
 	\setlength{\evensidemargin}{22,5mm}
 	\setlength{\headheight}{4,6mm}
@@ -100,42 +100,42 @@
 \let\UU@papersize\UU@setsfivepaper
 
 
-\DeclareOption{s5paper}{ 
+\DeclareOption{s5paper}{
 	\let\UU@papersize\UU@setsfivepaper
 }
 
-\DeclareOption{a4paper}{ 
+\DeclareOption{a4paper}{
 	\PassOptionsToClass{\CurrentOption}{book}
 	\PassOptionsToPackage{\CurrentOption}{geometry}
 	\PassOptionsToPackage{\CurrentOption}{hyperref}
 	\let\UU@papersize\UU@setafourpaper
 }
-\DeclareOption{a5paper}{ 
+\DeclareOption{a5paper}{
 	\PassOptionsToClass{\CurrentOption}{book}
 	\PassOptionsToPackage{\CurrentOption}{geometry}
 	\PassOptionsToPackage{\CurrentOption}{hyperref}
 	\@sfivepaperfalse
 	\let\UU@papersize\UU@setafivepaper
 }
-\DeclareOption{b5paper}{ 
+\DeclareOption{b5paper}{
 	\PassOptionsToClass{\CurrentOption}{book}
 	\PassOptionsToPackage{\CurrentOption}{geometry}
 	\PassOptionsToPackage{\CurrentOption}{hyperref}
 	\let\UU@papersize\UU@setbfivepaper
 }
-\DeclareOption{letterpaper}{ 
+\DeclareOption{letterpaper}{
 	\ClassWarning{Invalid papersize \CurrentOption}
 }
-\DeclareOption{legalpaper}{ 
+\DeclareOption{legalpaper}{
 	\ClassWarning{Invalid papersize \CurrentOption}
 }
-\DeclareOption{titles}{ 
+\DeclareOption{titles}{
 	\@culumntitlestrue
 }
-\DeclareOption{margnum}{ 
+\DeclareOption{margnum}{
 	\@UU@margnumtrue
 }
-\DeclareOption{twocolumn}{ 
+\DeclareOption{twocolumn}{
 	\ClassWarning{This class does not support \CurrentOption}
 }
 \DeclareOption{swedish}{ \PassOptionsToPackage{\CurrentOption}{babel} }
@@ -172,7 +172,7 @@
 
 % ============================================
 %              XeTeX requirements
-% ============================================	
+% ============================================
 \newif\ifFontIsAvailable
 \def\testFontAvailability#1{
 \count255=\interactionmode
@@ -186,7 +186,7 @@
 
 \expandafter\ifx\csname XeTeXrevision\endcsname\relax\else
 	\usepackage{fontspec}
-	\usepackage{xunicode}% provides unicode character macros 
+	\usepackage{xunicode}% provides unicode character macros
 	\usepackage{xltxtra}
 \fi
 
@@ -212,7 +212,7 @@
 \renewcommand\Large{\@setfontsize{\Large}{15}{17}}%15/17
 \renewcommand\LARGE{\@setfontsize{\LARGE}{18}{20}}%18/20
 \renewcommand\huge{\@setfontsize{\huge}{20}{23}}%20/23
-\renewcommand\Huge{\@setfontsize{\Huge}{24}{28}}%24/28 
+\renewcommand\Huge{\@setfontsize{\Huge}{24}{28}}%24/28
 
 \let\superscript\textsuperscript
 \let\subscript\textsubscript
@@ -330,7 +330,7 @@
 %             Page layout
 % ============================================
 
-% Plain - Empty header with page number outer end of footer 
+% Plain - Empty header with page number outer end of footer
 \renewcommand{\ps@plain}{%
 	\let\@oddhead\@empty%
 	\let\@evenhead\@empty%
@@ -354,10 +354,10 @@
 	\def\sectionmark ##1{\markright {\ifnum \c@secnumdepth >\z@ \thesection~~\fi ##1}}%
 }
 
-\let\@oddfoot\@empty 
-\let\@evenfoot\@empty 
-\let\@mkboth\@gobbletwo 
-\let\chaptermark\@gobble 
+\let\@oddfoot\@empty
+\let\@evenfoot\@empty
+\let\@mkboth\@gobbletwo
+\let\chaptermark\@gobble
 \let\sectionmark\@gobble
 \def\appendixmark#1{%
 	\markboth{Appendix \theappendix}{}%
@@ -393,20 +393,20 @@
 
 % Remove page numbers and numbering of headings
 \let\oldfrontmatter\frontmatter
-\renewcommand{\frontmatter}{% 
-	\renewcommand{\thepage}{\roman{page}}% 
-	\setcounter{secnumdepth}{-2} % 
-	\@mainmatterfalse% 
-	\pagestyle{empty}% 
+\renewcommand{\frontmatter}{%
+	\renewcommand{\thepage}{\roman{page}}%
+	\setcounter{secnumdepth}{-2} %
+	\@mainmatterfalse%
+	\pagestyle{empty}%
 }
 
 % Adjust to odd page and restore numbering of headings
 \let\oldmainmatter\mainmatter
-	\renewcommand{\mainmatter}{% 
-	\cleardoublepage% 
-	\renewcommand{\thepage}{\arabic{page}}% 
-	\setcounter{secnumdepth}{\c@secnumdepthmainmatter} % 
-	\@mainmattertrue% 
+	\renewcommand{\mainmatter}{%
+	\cleardoublepage%
+	\renewcommand{\thepage}{\arabic{page}}%
+	\setcounter{secnumdepth}{\c@secnumdepthmainmatter} %
+	\@mainmattertrue%
 	\if@culumntitles%
 		\pagestyle{headings}%
 	\else%
@@ -416,20 +416,20 @@
 
 % Remove page numbers and numbering of headings
 \let\oldbackmatter\backmatter
-\renewcommand{\backmatter}{% 
-	\oldbackmatter% 
+\renewcommand{\backmatter}{%
+	\oldbackmatter%
 	\setcounter{secnumdepth}{-2}
 	\makeatletter%
 	\ifx\toclevel@chapter\undefined\else%
 		\renewcommand{\toclevel@appendix}{-1}%
 		\renewcommand{\toclevel@chapter}{-1}%
-		\renewcommand{\toclevel@section}{0}% 
-		\renewcommand{\toclevel@subsection}{1}% 
-		\renewcommand{\toclevel@subsubsection}{2}% 
-		\renewcommand{\toclevel@paragraph}{3}% 
-		\renewcommand{\toclevel@subparagraph}{4}% 
+		\renewcommand{\toclevel@section}{0}%
+		\renewcommand{\toclevel@subsection}{1}%
+		\renewcommand{\toclevel@subsubsection}{2}%
+		\renewcommand{\toclevel@paragraph}{3}%
+		\renewcommand{\toclevel@subparagraph}{4}%
 	\fi%
-	\makeatother% 
+	\makeatother%
 }
 
 % Change the chapter command to create appendixes
@@ -440,23 +440,23 @@
 	\let\chaptername\appendixname%
 	\@mainmattertrue%
 }{%
-} 
+}
 
 
 % ============================================
 %                  Headings
-% ============================================	  
+% ============================================
 
 
 % Provides a readable command to set numbering of headings
 \providecommand{\toclevel@part}{-1}
 \providecommand{\toclevel@appendix}{0}%
 \providecommand{\toclevel@chapter}{0}%
-\providecommand{\toclevel@section}{1}% 
-\providecommand{\toclevel@subsection}{2}% 
-\providecommand{\toclevel@subsubsection}{3}% 
-\providecommand{\toclevel@paragraph}{4}% 
-\providecommand{\toclevel@subparagraph}{5}% 
+\providecommand{\toclevel@section}{1}%
+\providecommand{\toclevel@subsection}{2}%
+\providecommand{\toclevel@subsubsection}{3}%
+\providecommand{\toclevel@paragraph}{4}%
+\providecommand{\toclevel@subparagraph}{5}%
 
 \providecommand{\numberingdepth}[1]{%
 	\setcounter{secnumdepth}{\csname toclevel@#1\endcsname}%
@@ -658,7 +658,7 @@
 
 % ============================================
 %                 Captions
-% ============================================	  
+% ============================================
 
 \setlength{\abovecaptionskip}{3pt plus 2pt}
 \setlength{\belowcaptionskip}{0pt plus 42pt}
@@ -708,7 +708,7 @@
 
 % ============================================
 %              Package fixes
-% ============================================	  
+% ============================================
 
 \AtBeginDocument{%
 %
@@ -771,7 +771,7 @@
 		\def\longtable{\small\par\olongtable}%
 		\g@addto@macro\endlongtable{\addvspace{0pt plus 13pt}\normalsize}%
 		\let\oLT@array\LT@array%
-	\def\LT@array[#1]#2{% 
+	\def\LT@array[#1]#2{%
 	\oLT@array[#1]{#2}%
 	\hline \multicolumn{\LT@cols}{r@{}}{{\continuednextpage}} %
 	\endfoot}%
@@ -805,7 +805,7 @@
 
 % ============================================
 %             Table of contents
-% ============================================	
+% ============================================
 
 % Provides a readable command to set the level of detail in toc
 \providecommand{\contentsdepth}[1]{%
@@ -947,7 +947,7 @@
 \renewcommand*\l@subsubsection[2]{\@nopagebreaktoc{4}\customtocline{#1}{#2}{\tocindent@subsubsection}{\tocnumindent@subsubsection}{2}}
 \renewcommand*\l@paragraph[2]{\@nopagebreaktoc{4}\customtocline{#1}{#2}{\tocindent@paragraph}{\tocnumindent@paragraph}{3}}
 \renewcommand*\l@subparagraph[2]{\nopagebreak[1]\@nopagebreaktoc{5}\customtocline{#1}{#2}{\tocindent@subparagraph}{\tocnumindent@subparagraph}{4}}
-\setcounter{tocdepth}{2} 
+\setcounter{tocdepth}{2}
 
 \newcommand*\l@appendix[2]{%
 	\@nopagebreaktoc{0}
@@ -984,7 +984,7 @@
 
 % ============================================
 %                List of papers
-% ============================================	
+% ============================================
 
 
 \renewcommand{\bibname}{\refname}
@@ -994,14 +994,14 @@
 
 \providecommand{\listofpapersintro}[1]{\gdef\@listofpapersintro{#1}}
 \providecommand{\listofpapersoutro}[1]{\gdef\@listofpapersoutro{#1}}
-\listofpapersintro{This thesis is based on the following papers, which are referred to in the text by their roman numerals.}% 
+\listofpapersintro{This thesis is based on the following papers, which are referred to in the text by their roman numerals.}%
 \listofpapersoutro{Reprints were made with permission from the publishers.}
 
 
 \providecommand{\pgs@language@swedish}{%
 	\renewcommand{\bibname}{\refname}%
-	\renewcommand{\listofpapersname}{Lista \"over delarbeten}% 
-	\listofpapersintro{Denna avhandling \"ar baserad p\r{a} f\"oljande artiklar, vilka i texten h\"anvisas till med romerska siffror.}% 
+	\renewcommand{\listofpapersname}{Lista \"over delarbeten}%
+	\listofpapersintro{Denna avhandling \"ar baserad p\r{a} f\"oljande artiklar, vilka i texten h\"anvisas till med romerska siffror.}%
 	\listofpapersoutro{Reproduktion med tillst\aa nd fr\aa n respektive utgivare.}%
 	\renewcommand{\continuednextpage}{Fortsatt p\r{a} n\"a{}sta sida}%
 	\renewcommand{\keywordsname}{Nyckelord}%
@@ -1009,12 +1009,12 @@
 
 \providecommand{\pgs@language@english}{%
   	\renewcommand{\bibname}{\refname}%
-  	\renewcommand{\listofpapersname}{List of papers}% 
-	\listofpapersintro{This thesis is based on the following papers, which are referred to in the text by their Roman numerals.}% 
-	\listofpapersoutro{Reprints were made with permission from the publishers.}% 
+  	\renewcommand{\listofpapersname}{List of papers}%
+	\listofpapersintro{This thesis is based on the following papers, which are referred to in the text by their Roman numerals.}%
+	\listofpapersoutro{Reprints were made with permission from the publishers.}%
 	\renewcommand{\continuednextpage}{Continued on next page}%
 	\renewcommand{\keywordsname}{Keywords}%
-}		
+}
 
 
 \AtBeginDocument{%
@@ -1058,7 +1058,7 @@
 
 % ============================================
 %            Basic bibliography
-% ============================================	
+% ============================================
 
 \let\oldbib\thebibliography
 \let\endoldbib\endthebibliography
@@ -1091,7 +1091,7 @@
 
 % ============================================
 %                    Index
-% ============================================	
+% ============================================
 
 \newcommand{\UU@theindex}{
 	\clearpage%
@@ -1109,7 +1109,7 @@
 	\columnsep 35\p@ %
 	\let \item \@idxitem %
 	}%
-	
+
 \AtBeginDocument{%
 	\let\theindex\UU@theindex%
 	\@ifpackageloaded{makeidx}{%
@@ -1281,21 +1281,21 @@
 		\begin{itemize}
 		\setlistmargin
     }{\end{itemize}}
-    
+
     \newenvironment{bulletlist-indent}{
 		\setlength{\UU@listindent}{1cm}
     		\addtolength{\leftmargini}{\UU@listindent}
 		\begin{itemize}
 		\setlistmargin
     }{\end{itemize}}
-    
+
     \newenvironment{itemize-indent}{
 		\setlength{\UU@listindent}{1cm}
     		\addtolength{\leftmargini}{\UU@listindent}
 		\begin{itemize}
 		\setlistmargin
     }{\end{itemize}}
-  
+
     \newenvironment{romanlist}{
         \renewcommand{\labelenumi}{\Roman{enumi}.}
         \renewcommand{\labelenumii}{\roman{enumii}.}
@@ -1340,7 +1340,7 @@
 		\noindent\textit{#1}%
 	}
 
-        
+
 %\parfillskip=0cm plus 1fill
 %\emergencystretch 4em
 %\selectlanguage{swedish}
