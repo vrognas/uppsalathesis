@@ -7,4 +7,5 @@
 *.toc
 *.synctex.gz
 *.toc
+*.aux
 inst/uuthesis_xelatex/thesis.pdf
