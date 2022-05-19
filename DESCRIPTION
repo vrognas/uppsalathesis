@@ -1,11 +1,10 @@
 Package: uppsalathesis
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Uppsala University Thesis Template
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Viktor Rognås
+Maintainer: Viktor Rognås <viktor.rognas@farmaci.uu.se>
+Description: Template for writing a thesis at Uppsala University
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
