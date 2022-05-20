@@ -1125,7 +1125,7 @@
 \title{Title Page Dummy}
 \providecommand{\@subtitle}{This Page will be Replaced before Printing}
 \author{ }
-\titlepagelogo{UU_logo_sv_42}
+\titlepagelogo{UU_logo_sv_42.pdf}
 \providecommand{\makehalftitle}{%
   \begin{center}%
     \ifx\@publisher\relax\ifx\@series\relax Half Title Dummy Page\par \fi\fi%
@@ -1142,7 +1142,7 @@
 }
 
 \renewcommand{\maketitle}{%
-  \providecommand{\titlepagelogo}{UU_logo_sv_42}%
+  \providecommand{\titlepagelogo}{UU_logo_sv_42.pdf}%
   \begin {titlepage}%
     \def\first##1{##1}%
     \def\last##1{##1}%
