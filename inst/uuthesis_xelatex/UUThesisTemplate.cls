@@ -1217,76 +1217,83 @@
 % ============================================
 
   \newenvironment{numberedlist}{
-    \begin{enumerate}
-    \setlistmargin[5]
-    }{\end{enumerate}}
+     \begin{enumerate}
+     \setlistmargin[5]
+  }{\end{enumerate}}
 
   \newenvironment{numberedlist-indent}{
     \setlength{\UU@listindent}{1cm}
-        \addtolength{\leftmargini}{\UU@listindent}
+    \addtolength{\leftmargini}{\UU@listindent}
     \begin{enumerate}
     \setlistmargin[5]
-    }{\end{enumerate}}
+  }{\end{enumerate}}
 
   \newenvironment{enumerate-indent}{
     \setlength{\UU@listindent}{1cm}
-        \addtolength{\leftmargini}{\UU@listindent}
+    \addtolength{\leftmargini}{\UU@listindent}
     \begin{enumerate}
     \setlistmargin[5]
-    }{\end{enumerate}}
+  }{\end{enumerate}}
 
-    \newenvironment{bulletlist}{
+  \newenvironment{bulletlist}{
     \begin{itemize}
     \setlistmargin
-    }{\end{itemize}}
+  }{\end{itemize}}
 
-    \newenvironment{bulletlist-indent}{
+  \newenvironment{bulletlist-indent}{
     \setlength{\UU@listindent}{1cm}
-        \addtolength{\leftmargini}{\UU@listindent}
+    \addtolength{\leftmargini}{\UU@listindent}
     \begin{itemize}
     \setlistmargin
-    }{\end{itemize}}
+  }{\end{itemize}}
 
-    \newenvironment{itemize-indent}{
+  \newenvironment{itemize-indent}{
     \setlength{\UU@listindent}{1cm}
-        \addtolength{\leftmargini}{\UU@listindent}
+    \addtolength{\leftmargini}{\UU@listindent}
     \begin{itemize}
     \setlistmargin
-    }{\end{itemize}}
+  }{\end{itemize}}
 
-    \newenvironment{romanlist}{
-        \renewcommand{\labelenumi}{\Roman{enumi}.}
-        \renewcommand{\labelenumii}{\roman{enumii}.}
-        \begin{enumerate}
-        \setlistmargin[8]
-    }{\end{enumerate}}
-    \newenvironment{romanlist-indent}{
-      \setlength{\UU@listindent}{1cm}
-      \addtolength{\leftmargini}{\UU@listindent}
-        \begin{romanlist}
+  \newenvironment{romanlist}{
+    \renewcommand{\labelenumi}{\Roman{enumi}.}
+    \renewcommand{\labelenumii}{\roman{enumii}.}
+    \begin{enumerate}
+    \setlistmargin[8]
+  }{\end{enumerate}}
+
+  \newenvironment{romanlist-indent}{
+    \setlength{\UU@listindent}{1cm}
+    \addtolength{\leftmargini}{\UU@listindent}
+    \begin{romanlist}
+  }{\end{romanlist}}
+
+  \newenvironment{simplelist}{
+    \begin{list}{}{
+      \setlength{\leftmargin}{0mm}
+      \setlength{\itemsep}{0mm}
+      \setlength{\parsep}{0mm}
+      \setlength{\topsep}{0mm}
     }
-    {\end{romanlist}}
-    \newenvironment{simplelist}
-        {\begin{list}{}{
-            \setlength{\leftmargin}{0mm}
-            \setlength{\itemsep}{0mm}
-            \setlength{\parsep}{0mm}
-            \setlength{\topsep}{0mm}}}
-        {\end{list}}
-    \newenvironment{simplelist-indent}
-        {\begin{list}{}{
-            \setlength{\leftmargin}{1cm}
-            \setlength{\itemsep}{0mm}
-            \setlength{\parsep}{0mm}
-            \setlength{\topsep}{0mm}}}
-        {\end{list}}
-    \newenvironment{definitionlist}[1][]
-        {\@afterindenttrue\par\parindent -1em\advance\leftskip-\parindent\renewcommand{\item}[1]{\par{\it #1 ##1} -- \ignorespaces}}
-        {\par}
-    \newenvironment{definitionlist-indent}[1][]
-        {\leftskip 1cm\begin{definitionlist}[#1]}
-        {\end{definitionlist}}
-    \newcommand{\code}[1]{{\small\texttt{#1}}}
+  }{\end{list}}
+
+  \newenvironment{simplelist-indent}{
+    \begin{list}{}{
+      \setlength{\leftmargin}{1cm}
+      \setlength{\itemsep}{0mm}
+      \setlength{\parsep}{0mm}
+      \setlength{\topsep}{0mm}}
+  }{\end{list}}
+
+  \newenvironment{definitionlist}[1][]{
+    \@afterindenttrue\par\parindent -1em\advance\leftskip-\parindent\renewcommand{\item}[1]{\par{\it #1 ##1} -- \ignorespaces}
+  }{\par}
+
+  \newenvironment{definitionlist-indent}[1][]{
+    \leftskip 1cm\begin{definitionlist}[#1]
+  }{\end{definitionlist}}
+
+  \newcommand{\code}[1]{{\small\texttt{#1}}}
+
   \newcommand\listheading[1]{%
     \if@noskipsec\leavevmode\fi %
     \par\@tempskipa 13pt \@plus 2pt \@minus 3pt\relax\@afterindentfalse%
