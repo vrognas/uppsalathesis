@@ -2,7 +2,9 @@
 %   Class definition Ver. 5.2.0 - 2012-08-08
 % ============================================
 
-\ProvidesClass{UUThesisTemplate}
+%%Identification
+%%The class identifies itself and the LaTeX version needed
+\ProvidesClass{UUThesisTemplate}[2012/08/08 Uppsala University Thesis Template]
 \NeedsTeXFormat{LaTeX2e}
 
 % Conditionals for options
