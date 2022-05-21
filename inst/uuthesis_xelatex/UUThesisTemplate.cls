@@ -277,7 +277,15 @@
   bookmarks=true
 }{hyperref}
 
-\ProcessOptions
+% -----------------------------------------------------------------------------
+% \ProcessOptions executes the code for each option that the user has invoked.
+% It is wise to follow the non-star form of \ProcessOptions with \relax,
+% since this prevents unnecessary look ahead and possibly misleading error
+% messages being issued.
+%
+% http://labmaster.mi.infn.it/wwwasdoc.web.cern.ch/wwwasdoc/TL8/texmf/doc/latex/base/html/clsguide/node33.html
+
+\ProcessOptions\relax
 
 % -----------------------------------------------------------------------------
 % \LoadClass[options list]{class name}[release date]
