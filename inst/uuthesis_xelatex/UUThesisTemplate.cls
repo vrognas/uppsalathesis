@@ -2,10 +2,50 @@
 %   Class definition Ver. 5.2.0 - 2012-08-08
 % ============================================
 
-%%Identification
-%%The class identifies itself and the LaTeX version needed
-\ProvidesClass{UUThesisTemplate}[2012/08/08 Uppsala University Thesis Template]
+% -----------------------------------------------------------------------------
+% With explanations by Viktor Rognås
+%
+% viktor.rognas@farmaci.uu.se -------------------------------------------------
+
+% Identification
+% The class identifies itself and the LaTeX version needed
+\ProvidesClass{UUThesisTemplate}[2022/05/21 Uppsala University Thesis Template]
 \NeedsTeXFormat{LaTeX2e}
+
+% -----------------------------------------------------------------------------
+% LaTeX is a macro language. The word "macro" is mainly used for new user commands.
+% "Macros" defined by the kernel or packages are called "commands".
+% You can also call them "control sequences".
+%
+% https://latex.org/forum/viewtopic.php?f=44&t=26184 --------------------------
+
+% -----------------------------------------------------------------------------
+% \newif\iffoo defines:
+% \iffoo    to be \iffalse
+% \footrue  to be a command that defines \iffoo to be \iftrue
+% \foofalse to be a command that defines \iffoo to be \iffalse
+%
+% \iftrue and \iffalse are primitives that act as true and false respectively.
+%
+% So if you have:
+%
+% \iffoo
+%   some code here
+% \fi
+%
+% the code will be executed or not depending whether earlier you have executed
+% \footrue to change the meaning of \iffoo to \iftrue.
+%
+% https://tex.stackexchange.com/a/175921/211418 -------------------------------
+
+% -----------------------------------------------------------------------------
+% The @ symbol is used for internal functions in the class file.
+% In normal .tex files, "@" has catcode 12 (not a normal letter).
+% In class (.cls) and package (.sty) files, "@" has category code (catcode) 11,
+% a normal letter.
+% The advantage of this is that such macro names are automatically protected from regular users: since they cannot use @ as a normal letter, there is no accidental way for a user to override or change a macro that is part of the internal workings of a package.
+%
+% https://tex.stackexchange.com/a/8353/211418 ---------------------------------
 
 % Conditionals for options
 \newif\if@UU@chapterafterpart
@@ -15,11 +55,30 @@
 \newif\if@UU@openright
 \newif\if@UU@margnum
 
-\@usepdfgfxtrue
-\@sfivepapertrue
-\@UU@chapterafterparttrue
-\@culumntitlesfalse
-\@UU@openrightfalse
+\@usepdfgfxtrue           % Use PDF Gfx
+\@sfivepapertrue          % Use S5 paper
+\@UU@chapterafterparttrue % Use "Chapter after part"
+\@culumntitlesfalse       % Don't use culumntitles
+\@UU@openrightfalse       % Don't "open right"
+
+% -----------------------------------------------------------------------------
+% \newcommand     defines a new command, and makes an error if it is already defined.
+% \renewcommand   redefines a predefined command, and makes an error if it is not yet defined.
+% \providecommand defines a new command if it isn't already defined.
+%
+% To define a command whether it is new or predefined, you can use:
+% \def
+% \providecommand\foo{}
+% \renewcommand\foo{...}
+%
+% https://tex.stackexchange.com/a/36178/211418 --------------------------------
+
+% -----------------------------------------------------------------------------
+% \setlength{\len}{amount}
+% Set the length \len to amount.
+% The length name \len has to be a control sequence (begin with a backslash).
+%
+% https://latexref.xyz/_005csetlength.html ------------------------------------
 
 % Paper resizing commands
 \providecommand{\UU@setsfivepaper}{
@@ -41,6 +100,13 @@
   \setlength{\pdfpagewidth}{\paperwidth}
   \setlength{\pdfpageheight}{\paperheight}
 }
+
+% -----------------------------------------------------------------------------
+% \special provides the means to express things that device drivers can do. All
+% that TeX does with these commands is to expand their arguments and then pass
+% the command to the DVI file.
+%
+% https://texfaq.org/FAQ-specials ---------------------------------------------
 
 \providecommand{\UU@setafourpaper}{
   \setlength{\paperheight}{297mm}
@@ -100,12 +166,46 @@
   \setlength{\pdfpageheight}{\paperheight}
 }
 
+% -----------------------------------------------------------------------------
+% \let copies a command to a new name
+% \def creates a new command
+%
+% \let\foo\bar   makes \foo have the value that \bar had AT THE POINT OF DEFINITION.
+% \def\foo{\bar} makes \foo have the value that \bar has AT THE POINT OF USE.
+%
+% Basically: \def\foo{\bar} makes \foo an alias for \bar;
+% while \let\foo\bar would copy \bar into \foo at the point of definition for \foo.
+%
+% https://tex.stackexchange.com/a/318/211418 ----------------------------------
+
 \providecommand{\UU@papersize}{}
 \let\UU@papersize\UU@setsfivepaper
+
+% -----------------------------------------------------------------------------
+% \DeclareOption{option}{code}
+% Make an option available to a user to invoke in their \documentclass command.
+%
+% https://latexref.xyz/Class-and-package-commands.html#index-_005cDeclareOption
 
 \DeclareOption{s5paper}{
   \let\UU@papersize\UU@setsfivepaper
 }
+
+% -----------------------------------------------------------------------------
+% \PassOptionsToClass{option list}{class name}
+% \PassOptionsToPackage{option list}{package name}
+% Adds the options in the comma-separated list "option list" to the options used
+% by any future \RequirePackage or \usepackage command for package "package name"
+% or the class "class name".
+%
+% https://latexref.xyz/Class-and-package-commands.html#index-_005cPassOptionsToClass
+
+% -----------------------------------------------------------------------------
+% \CurrentOption
+% Expands to the name of the currently-being-processed option. Can only be used
+% within the "code" argument of either \DeclareOption or \DeclareOption*.
+%
+% https://latexref.xyz/Class-and-package-commands.html#index-_005cCurrentOption
 
 \DeclareOption{a4paper}{
   \PassOptionsToClass{\CurrentOption}{book}
@@ -129,42 +229,75 @@
   \let\UU@papersize\UU@setbfivepaper
 }
 
-\DeclareOption{letterpaper}{
-  \ClassWarning{Invalid papersize \CurrentOption}
-}
+% \ClassWarning{class name}{warning text}: Produce a warning.
 
-\DeclareOption{legalpaper}{
-  \ClassWarning{Invalid papersize \CurrentOption}
-}
+\DeclareOption{letterpaper}{\ClassWarning{Invalid papersize \CurrentOption}}
+\DeclareOption{legalpaper}{\ClassWarning{Invalid papersize \CurrentOption}}
 
-\DeclareOption{titles}{
-  \@culumntitlestrue
-}
-
-\DeclareOption{margnum}{
-  \@UU@margnumtrue
-}
+\DeclareOption{titles}{\@culumntitlestrue}
+\DeclareOption{margnum}{\@UU@margnumtrue}
 
 \DeclareOption{twocolumn}{
   \ClassWarning{This class does not support \CurrentOption}
 }
 
-\DeclareOption{swedish}{ \PassOptionsToPackage{\CurrentOption}{babel} }
-\DeclareOption{english}{ \PassOptionsToPackage{\CurrentOption}{babel} }
-\DeclareOption{german}{ \PassOptionsToPackage{\CurrentOption}{babel} }
-\DeclareOption{french}{ \PassOptionsToPackage{\CurrentOption}{babel} }
-\DeclareOption{openany}{ \@UU@openrightfalse }
-\DeclareOption{openright}{ \@UU@openrighttrue }
+\DeclareOption{swedish}{\PassOptionsToPackage{\CurrentOption}{babel}}
+\DeclareOption{english}{\PassOptionsToPackage{\CurrentOption}{babel}}
+\DeclareOption{german}{\PassOptionsToPackage{\CurrentOption}{babel}}
+\DeclareOption{french}{\PassOptionsToPackage{\CurrentOption}{babel}}
+
+\DeclareOption{openany}{
+  \@UU@openrightfalse
+}
+
+\DeclareOption{openright}{
+  \@UU@openrighttrue
+}
 
 \PassOptionsToPackage{figuresright}{rotating}
-\PassOptionsToPackage{font=small,labelfont=bf,nooneline,textfont=it}{caption}
-\PassOptionsToPackage{linktocpage, breaklinks=true, colorlinks=true, urlcolor=black, linkcolor=black, citecolor=black, filecolor=black, menucolor=black, pdfpagelabels,bookmarksnumbered=true,bookmarks=true}{hyperref}
+
+\PassOptionsToPackage{
+  font=small,%
+  labelfont=bf,%
+  nooneline,%
+  textfont=it
+}{caption}
+
+\PassOptionsToPackage{
+  linktocpage,%
+  breaklinks=true,%
+  colorlinks=true,%
+  urlcolor=black,%
+  linkcolor=black,%
+  citecolor=black,%
+  filecolor=black,%
+  menucolor=black,%
+  pdfpagelabels,%
+  bookmarksnumbered=true,%
+  bookmarks=true
+}{hyperref}
 
 \ProcessOptions
 
+% -----------------------------------------------------------------------------
+% \LoadClass[options list]{class name}[release date]
+% \LoadClassWithOptions{class name}[release date]
+%
+% Load a class, as with \documentclass[options list]{class name}[release info].
+% An example is \LoadClass[twoside]{article}.
+% The options list, if present, is a comma-separated list.
+% The release date is optional. If present it must have the form YYYY/MM/DD.
+%
+% https://latexref.xyz/Class-and-package-commands.html#index-_005cLoadClass ---
+
 % The thesis template is based on the standard class book
 \LoadClass{book}
-\if@UU@openright\@openrighttrue\else\@openrightfalse\fi
+
+\if@UU@openright%
+  \@openrighttrue%
+\else%
+  \@openrightfalse%
+\fi
 
 \@ifpackageloaded{ifpdf}{%
   \usepackage{ifpdf}%
@@ -184,14 +317,18 @@
 % ============================================
 
 \newif\ifFontIsAvailable
+
 \def\testFontAvailability#1{
-\count255=\interactionmode
-\batchmode
-\let\preload=\nullfont
-\font\preload="#1" at 11pt
-\ifx\preload\nullfont \FontIsAvailablefalse
-\else \FontIsAvailabletrue \fi
-\interactionmode=\count255
+  \count255=\interactionmode
+  \batchmode
+  \let\preload=\nullfont
+  \font\preload="#1" at 11pt
+  \ifx%
+    \preload\nullfont \FontIsAvailablefalse%
+  \else%
+    \FontIsAvailabletrue%
+  \fi
+  \interactionmode=\count255
 }
 
 \expandafter\ifx\csname XeTeXrevision\endcsname\relax\else
@@ -211,20 +348,20 @@
 % ============================================
 
 \AtBeginDocument{
-\renewcommand\normalsize{\@setfontsize{\normalsize}{11}{13}} %11/13pt
-\renewcommand\small{\@setfontsize{\small}{10}{12}}%10/12pt
-\renewcommand\footnotesize{\@setfontsize{\footnotesize}{9}{11}}%9/11pt
-\renewcommand\scriptsize{\@setfontsize{\scriptsize}{8}{10}}%8/10pt
-\renewcommand\tiny{\@setfontsize{\tiny}{6}{8}}%6/8pt
-\renewcommand\large{\@setfontsize{\large}{13}{15}}%13/15
-\renewcommand\Large{\@setfontsize{\Large}{15}{17}}%15/17
-\renewcommand\LARGE{\@setfontsize{\LARGE}{18}{20}}%18/20
-\renewcommand\huge{\@setfontsize{\huge}{20}{23}}%20/23
-\renewcommand\Huge{\@setfontsize{\Huge}{24}{28}}%24/28
+  \renewcommand\normalsize{\@setfontsize{\normalsize}{11}{13}} %11/13pt
+  \renewcommand\small{\@setfontsize{\small}{10}{12}}%10/12pt
+  \renewcommand\footnotesize{\@setfontsize{\footnotesize}{9}{11}}%9/11pt
+  \renewcommand\scriptsize{\@setfontsize{\scriptsize}{8}{10}}%8/10pt
+  \renewcommand\tiny{\@setfontsize{\tiny}{6}{8}}%6/8pt
+  \renewcommand\large{\@setfontsize{\large}{13}{15}}%13/15
+  \renewcommand\Large{\@setfontsize{\Large}{15}{17}}%15/17
+  \renewcommand\LARGE{\@setfontsize{\LARGE}{18}{20}}%18/20
+  \renewcommand\huge{\@setfontsize{\huge}{20}{23}}%20/23
+  \renewcommand\Huge{\@setfontsize{\Huge}{24}{28}}%24/28
 
-\let\superscript\textsuperscript
-\let\subscript\textsubscript
-\normalsize
+  \let\superscript\textsuperscript
+  \let\subscript\textsubscript
+  \normalsize
 }
 
 % ============================================
@@ -254,7 +391,9 @@
   \hb@xt@0.4em{\hss\@makefnmark}#1%
 }
 
-\renewcommand\footnoterule{{\leftskip 0pt\noindent\rule{26mm}{.5pt}\vspace{3pt}\par}}
+\renewcommand\footnoterule{%
+  {\leftskip 0pt\noindent\rule{26mm}{.5pt}\vspace{3pt}\par}%
+}
 
 % Remove default spacing between items in lists
 \renewcommand{\labelitemi}{\textbullet}%
@@ -273,16 +412,20 @@
   \setlength\itemsep{0\p@}%
   \setlength{\partopsep}{0pt}%
 }
+
 \let\@listi\@listI
 \renewcommand{\@listii}{%
   \setlength\leftmargin\leftmarginii%
 }
+
 \renewcommand{\@listiii}{%
   \setlength\leftmargin\leftmarginiii%
 }
+
 \renewcommand{\@listiv}{%
   \setlength\leftmargin\leftmarginiv%
 }
+
 \renewcommand{\@listv}{%
   \setlength\leftmargin\leftmarginv%
 }
@@ -396,7 +539,7 @@
 
 % Adjust to odd page and restore numbering of headings
 \let\oldmainmatter\mainmatter
-  \renewcommand{\mainmatter}{%
+\renewcommand{\mainmatter}{%
   \cleardoublepage%
   \renewcommand{\thepage}{\arabic{page}}%
   \setcounter{secnumdepth}{\c@secnumdepthmainmatter} %
@@ -648,45 +791,45 @@
 \setlength{\belowcaptionskip}{0pt plus 42pt}
 
 \AtBeginDocument{
-\def\@caption#1[#2]#3{%
-  \par %
-  \addcontentsline {\csname ext@#1\endcsname }{#1}{\protect \numberline {\csname the#1\endcsname }{\ignorespaces #2}}%
-  \begingroup %
-    \@parboxrestore %
-    \if@minipage %
-      \@setminipage %
-    \fi %
-    \normalsize %
-    \@makecaption{\csname fnum@#1\endcsname }{\ignorespaces #3}%
+  \def\@caption#1[#2]#3{%
     \par %
-  \endgroup
-}
-
-\def\@makecaption@table#1#2{%
-  \addvspace{\belowcaptionskip}%
-  %\sbox\@tempboxa{{\bf #1.} #2}%
-  \small{\bf #1.} {\it #2}\par%
-  \addvspace{\abovecaptionskip}%
-}
-
-\def\@makecaption@default#1#2{%
-  \addvspace{\abovecaptionskip}%
-  \sbox\@tempboxa{{\it #1.} #2}%
-  \ifdim \wd\@tempboxa>\hsize%
-    \small{\it #1.} #2\par%
-  \else %
-    \global \@minipagefalse \hb@xt@ \hsize {\hfil \box \@tempboxa \hfil }%
-  \fi %
-  \addvspace{\belowcaptionskip}%
-}
-
-\renewcommand{\@makecaption}[2]{%
-  \expandafter\let\expandafter\hej\csname   @makecaption@\@captype\endcsname%
-  \expandafter\ifx\hej\relax%
-    \let\hej\@makecaption@default%
-  \fi%
-  \hej{#1}{#2}%
-}
+    \addcontentsline {\csname ext@#1\endcsname }{#1}{\protect \numberline {\csname the#1\endcsname }{\ignorespaces #2}}%
+    \begingroup %
+      \@parboxrestore %
+      \if@minipage %
+        \@setminipage %
+      \fi %
+      \normalsize %
+      \@makecaption{\csname fnum@#1\endcsname }{\ignorespaces #3}%
+      \par %
+    \endgroup
+  }
+%
+  \def\@makecaption@table#1#2{%
+    \addvspace{\belowcaptionskip}%
+    %\sbox\@tempboxa{{\bf #1.} #2}%
+    \small{\bf #1.} {\it #2}\par%
+    \addvspace{\abovecaptionskip}%
+  }
+%
+  \def\@makecaption@default#1#2{%
+    \addvspace{\abovecaptionskip}%
+    \sbox\@tempboxa{{\it #1.} #2}%
+    \ifdim \wd\@tempboxa>\hsize%
+      \small{\it #1.} #2\par%
+    \else %
+      \global \@minipagefalse \hb@xt@ \hsize {\hfil \box \@tempboxa \hfil }%
+    \fi %
+    \addvspace{\belowcaptionskip}%
+  }
+%
+  \renewcommand{\@makecaption}[2]{%
+    \expandafter\let\expandafter\hej\csname   @makecaption@\@captype\endcsname%
+    \expandafter\ifx\hej\relax%
+      \let\hej\@makecaption@default%
+    \fi%
+    \hej{#1}{#2}%
+  }
 }
 
 % ============================================
@@ -818,7 +961,7 @@
     \par%
     \endgroup%
   \fi%
- }
+}
 
 \renewcommand*{\numberline}[1]{\@hangfrom{\hb@xt@ \@tempdima {#1\hfil}}}
 \newcommand*\nonumberline[1]{\hb@xt@ \@tempdima {#1\hfil}}
@@ -840,6 +983,7 @@
   \settowidth{\tocnumindent@subparagraph}{#1.#2.#3.#4.#5.#6\hspace{0.5em}}
   \adjusttocindent
 }
+
 \newcommand{\settocindent}[6]{
   \setlength{\tocindent@chapter}{#1}
   \setlength{\tocindent@section}{#2}
@@ -848,6 +992,7 @@
   \setlength{\tocindent@paragraph}{#5}
   \setlength{\tocindent@subparagraph}{#6}
 }
+
 \newcommand{\adjusttocindent}{
   \setlength{\tocindent@section}{\tocindent@chapter}%
   \ifnum\c@secnumdepthmainmatter>-1\addtolength{\tocindent@section}{\tocnumindent@chapter}%
@@ -869,6 +1014,7 @@
   \ifnum\c@secnumdepthmainmatter>3\addtolength{\tocindent@subparagraph}{\tocnumindent@paragraph}%
   \else\addtolength{\tocindent@subparagraph}{\tocindent}\fi%
 }
+
 \newlength{\tocnumindent@chapter}
 \newlength{\tocnumindent@section}
 \newlength{\tocnumindent@subsection}
@@ -919,7 +1065,8 @@
   \vskip\tocskip@chapter%
   \customtocline{#1}{#2}{\tocindent@chapter}{\tocnumindent@chapter}{-1}%
   %\renewcommand{\numberline}{\stdnumberline}%
-  }
+}
+
 \renewcommand*\l@section[2]{\@nopagebreaktoc{1}\customtocline{#1}{#2}{\tocindent@section}{\tocnumindent@section}{0}}
 \renewcommand*\l@subsection[2]{\@nopagebreaktoc{2}\customtocline{#1}{#2}{\tocindent@subsection}{\tocnumindent@subsection}{1}}
 \renewcommand*\l@subsubsection[2]{\@nopagebreaktoc{4}\customtocline{#1}{#2}{\tocindent@subsubsection}{\tocnumindent@subsubsection}{2}}
@@ -948,6 +1095,7 @@
   \customtocline{#1}{#2}{\z@}{4.3em}{0}%
   \renewcommand{\numberline}{\stdnumberline}%
 }
+
 \renewcommand*\l@table[2]{%
   \let\numberline\tablenumberline%
   \customtocline{#1}{#2}{\z@}{4.3em}{0}%
@@ -990,10 +1138,10 @@
 \AtBeginDocument{%
   \@ifpackageloaded{babel}{%
     \addto\captionsswedish{%
-        \pgs@language@swedish
+      \pgs@language@swedish
     }%
     \addto\captionsenglish{%
-        \pgs@language@english
+      \pgs@language@english
     }%
   }{}%
   \@ifpackageloaded{polyglossia}{%
@@ -1015,11 +1163,11 @@
       \UU@RaggedRight%
       \hyphenpenalty=10000%
         \usecounter{listofpapersc}%
-            \setlength{\leftmargin}{2,5em}%
-            \setlength{\labelsep}{1em}%
-            \setlength{\itemsep}{1em plus 0.2em minus 0.2em}%
-            \setlength{\parsep}{0mm}%
-            \setlength{\topsep}{0mm}}%
+          \setlength{\leftmargin}{2,5em}%
+          \setlength{\labelsep}{1em}%
+          \setlength{\itemsep}{1em plus 0.2em minus 0.2em}%
+          \setlength{\parsep}{0mm}%
+          \setlength{\topsep}{0mm}}%
 }{%
     \end{list}\nopagebreak%
     \vspace{1\baselineskip}\noindent {\@listofpapersoutro}%
@@ -1076,7 +1224,7 @@
   \columnseprule \z@ %
   \columnsep 35\p@ %
   \let \item \@idxitem %
-  }%
+}%
 
 \AtBeginDocument{%
   \let\theindex\UU@theindex%
@@ -1190,7 +1338,9 @@
 
 \providecommand{\abstracthead}{}
 \providecommand{\abstractfoot}{}
-\providecommand{\abstractsection}{\vskip\baselineskip\noindent\textbf{Abstract}\par\noindent\ignorespaces}
+\providecommand{\abstractsection}{%
+  \vskip\baselineskip\noindent\textbf{Abstract}\par\noindent\ignorespaces%
+}
 \providecommand{\abstractpreamble}{\clearpage\thispagestyle{empty}}
 \providecommand{\abstractfont}{\fontsize{9}{11}\fontshape{rm}\selectfont}
 
