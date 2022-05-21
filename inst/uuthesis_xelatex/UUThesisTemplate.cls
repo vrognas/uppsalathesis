@@ -298,7 +298,7 @@
 %
 % https://latexref.xyz/Class-and-package-commands.html#index-_005cLoadClass ---
 
-% The thesis template is based on the standard class book
+% The thesis template is based on the standard class "book"
 \LoadClass{book}
 
 \if@UU@openright%
@@ -307,8 +307,8 @@
   \@openrightfalse%
 \fi
 
-\@ifpackageloaded{ifpdf}{%
-  \usepackage{ifpdf}%
+\@ifpackageloaded{iftex}{%
+  \usepackage{iftex}%
   \ifpdf%
     \@usepdfgfxtrue%
   \else%
